@@ -37,7 +37,7 @@ class WxController extends Controller
         $log_file = 'wx.log';
         $data = json_encode($_POST);
         //将接收的数据记录到日志文件
-        file _put_contents($log_file,$data,FILE_APPEND);
+        file_put_contents($log_file,$data,FILE_APPEND);
     }
 
     public function getuserinfo(){

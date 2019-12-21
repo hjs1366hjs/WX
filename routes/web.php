@@ -17,8 +17,12 @@ Route::get('/', function () {
 
 
 //微信开发
-Route::get('/wx','WX\WxController@wechat');
+//Route::get('/wx','WX\WxController@wechat');
 Route::post('/wx','WX\WxController@receiv');
+
+
+Route::post('/text','Text\TextController@textxml');
+
 
 
 

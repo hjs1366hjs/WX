@@ -70,9 +70,25 @@ class WxController extends Controller
             file_put_contents('wx_user.log',$user_info,FILE_APPEND);
         }
 
+
+        //判断消息类型
+        $msg_type = $xml_obj->Msg0Type;
+
+        if($msg_type == 'text'){
+            $response_text = '<xml>
+                                    <ToUserName><![CDATA[toUser]]></ToUserName>
+                                    <FromUserName><![CDATA[fromUser]]></FromUserName>
+                                    <CreateTime>12345678</CreateTime>
+                                    <MsgType><![CDATA[text]]></MsgType>
+                                    <Content><![CDATA[你好]]></Content>
+            </xml>';
+
+            echo $response_text;
+        }
+
     }
 
-    public function getuserinfo($access_token,$openid){
+    public function getuserInfo($access_token,$openid){
 
         $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
     }

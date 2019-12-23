@@ -36,11 +36,15 @@ class WxController extends Controller
     {
         $log_file = 'wx.log';       //public
         //将接收的数据记录到日志文件
-        $xml = file_get_contents("php://input");
-        $data =date('Y-m-d H:i:s') . $xml;
+        $xml_str = file_get_contents("php://input");
+        $data =date('Y-m-d H:i:s') . $xml_str;
         file_put_contents($log_file,$data,FILE_APPEND);
 
-        //$xml_arr = simplexml_load_string($xml_str);
+        //处理xml数据
+        $xml_obj = simplexml_load_string($xml_str);
+
+        //入库  其他逻辑
+
     }
 
     public function getuserinfo(){

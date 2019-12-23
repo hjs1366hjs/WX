@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WX;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Redis;
 
 class WxController extends Controller
 {
@@ -13,14 +14,21 @@ class WxController extends Controller
     public function __construct()
     {
         //获取access_token
-        $thuis->access_token = $this->getAccessToken();
+        $this->access_token = $this->getAccessToken();
     }
 
     protected function getAccessToken()
     {
-        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WX_APPID').'&secret='.env('WX_APPSECRET').'';
+        $keys = "wx_access_token";
+        $access_token = Redis::get($keys);
+        if ($access_token) {
+            return $access_token;
+        }
+        $url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=' . env('WX_APPID') . '&secret=' . env('WX_APPSECREET');
         $data_json = file_get_contents($url);
-        $arr = json_decode($data_json,true);
+        $arr = json_decode($data_json, true);
+        Redis::set($keys, $arr['access_token']);
+        Redis::expire($keys, 3600);
         return $arr['access_token'];
     }
 

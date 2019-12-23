@@ -80,11 +80,11 @@ class WxController extends Controller
         if($msg_type == 'text'){
             $content = data('Y-m-d H:i:s') . $xml_obj->Content;
             $response_text = '<xml>
-                                    <ToUserName><![CDATA[toUser]]></ToUserName>
-                                    <FromUserName><![CDATA[fromUser]]></FromUserName>
-                                    <CreateTime>12345678</CreateTime>
+                                    <ToUserName><![CDATA['.$touser.']]></ToUserName>
+                                    <FromUserName><![CDATA['.$fromuser.']]></FromUserName>
+                                    <CreateTime>'.$time.'</CreateTime>
                                     <MsgType><![CDATA[text]]></MsgType>
-                                    <Content><![CDATA[你好]]></Content>
+                                    <Content><![CDATA['.$content.']]></Content>
             </xml>';
 
             echo $response_text;

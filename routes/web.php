@@ -16,15 +16,12 @@ Route::get('/', function () {
 });
 
 
-//微信开发
+Route::post('/curl','Text\CurlController@textcurl');
+
+//微信
 Route::get('/wx','WX\WxController@wechat');
-Route::post('/wx','WX\WxController@receiv');
 
 
-
-
-//测试
-Route::post('/text','Text\TextController@textxml');
 
 
 

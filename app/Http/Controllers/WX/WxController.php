@@ -2,10 +2,7 @@
 namespace App\Http\Controllers\WX;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Model\WeixinModel;
-use Illuminate\Support\Facades\Redis;
-use Illuminate\Support\Str;
-use GuzzleHttp\Client;
+
 
 class WxController extends Controller
 {
